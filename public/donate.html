@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Donate — TutorD</title>
+  <style>
+    body { font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial; padding: 24px; max-width:720px; margin:0 auto; color:#111; }
+    h1 { margin-bottom: 6px; }
+    .card { border:1px solid #e6e6e6; padding:16px; border-radius:8px; background:#fff; margin-top:12px; }
+    .phone { font-size:1.4rem; font-weight:700; margin:8px 0; letter-spacing:1px; }
+    button { padding:8px 12px; margin-right:8px; cursor:pointer; }
+    .note { color:#555; margin-top:12px; font-size:0.95rem; }
+    img.qr { width:200px; height:200px; display:block; margin-top:12px; }
+  </style>
+</head>
+<body>
+  <h1>Support TutorD</h1>
+  <p>Thank you for supporting TutorD — your contribution helps keep lessons, notes and past papers available for learners.</p>
+
+  <div class="card">
+    <div><strong>Donate by mobile/USSD</strong></div>
+    <div class="phone" id="phoneNumber">078 978 9721</div>
+
+    <div>
+      <button id="copyBtn">Copy number</button>
+      <a id="callLink" href="tel:0789789721"><button>Call</button></a>
+      <a id="whatsappLink" href="https://wa.me/263789789721" target="_blank" rel="noopener"><button>WhatsApp</button></a>
+    </div>
+
+    <div style="margin-top:12px">
+      <div><strong>QR code (scan to call)</strong></div>
+      <img id="qrImage" class="qr" alt="QR code for donation number">
+    </div>
+
+    <div class="note">
+      If you prefer electronic payments (Ecocash, OneMoney, bank transfer, PayPal, Flutterwave), contact us via WhatsApp or email for details.
+    </div>
+  </div>
+
+  <script>
+    // Copy to clipboard
+    document.getElementById('copyBtn').addEventListener('click', async function () {
+      const number = document.getElementById('phoneNumber').textContent.replace(/\s+/g,'');
+      try {
+        await navigator.clipboard.writeText(number);
+        this.textContent = 'Copied!';
+        setTimeout(() => this.textContent = 'Copy number', 2000);
+      } catch (e) {
+        alert('Copy failed — please select and copy manually: ' + number);
+      }
+    });
+
+    // Generate a simple QR code using Google Chart API (no libs)
+    (function renderQr() {
+      const phone = document.getElementById('phoneNumber').textContent.replace(/\s+/g,'');
+      // Encode a tel: URI in the QR so scanning on mobile can trigger a call/send
+      const payload = encodeURIComponent('tel:' + phone);
+      const size = 400;
+      const url = `https://chart.googleapis.com/chart?cht=qr&chs=${size}x${size}&chl=${payload}&chld=L|1`;
+      document.getElementById('qrImage').src = url;
+    })();
+  </script>
+</body>
+</html>
