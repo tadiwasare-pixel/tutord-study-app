@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Admin — Tutord Study App (Client-side)</title>
+  <style>
+    body{font-family:system-ui,Segoe UI,Roboto,Arial;margin:20px}
+    label{display:block;margin:6px 0}
+    input,textarea,select{font:inherit}
+    #panel{margin-top:12px}
+    #postsContainer div{background:#f9f9f9}
+  </style>
+</head>
+<body>
+  <h1>Admin Panel (Client-side guard)</h1>
+
+  <div id="login">
+    <h2>Login</h2>
+    <label>Email: <input id="email" type="email" placeholder="admin email" /></label>
+    <label>Password: <input id="password" type="password" placeholder="password" /></label>
+    <button id="loginBtn">Login</button>
+    <div id="loginMsg" aria-live="polite" style="color:red;margin-top:8px"></div>
+  </div>
+
+  <div id="panel" style="display:none">
+    <h2>Create a post</h2>
+    <label>Type:
+      <select id="postType">
+        <option value="update">Update</option>
+        <option value="notes">Notes</option>
+        <option value="past_paper">Past Paper</option>
+      </select>
+    </label>
+
+    <label>Subject Number (optional): <input id="subjectNumber" type="number" min="1" max="40" /></label>
+    <label>Title: <input id="title" type="text" /></label>
+    <label>Content:<br /><textarea id="content" rows="6" cols="60"></textarea></label>
+
+    <button id="postBtn">Post</button>
+    <button id="logoutBtn">Logout</button>
+    <div id="postMsg" aria-live="polite" style="color:green;margin-top:8px"></div>
+  </div>
+
+  <h2>All posts (preview)</h2>
+  <div id="postsContainer"></div>
+
+  <p style="margin-top:20px;font-size:0.9em;color:#555">Security: this implements a client-side guard only. The admin email/password are present in the page's JavaScript and can be discovered by anyone who inspects source. For a production-safe solution see server-side option.</p>
+
+  <script src="admin.js"></script>
+  <script src="posts.js"></script>
+</body>
+</html>
