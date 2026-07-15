@@ -1,0 +1,13 @@
+{
+  "name": "TutorD 2026 Study Hub",
+  "short_name": "TutorD",
+  "start_url": ".",
+  "display": "standalone",
+  "background_color": "#f4f8fd",
+  "theme_color": "#0b2b4a",
+  "description": "Offline-ready ZIMSEC study hub with notes, updates, past papers and community posts.",
+  "icons": [
+    { "src": "icons/icon-192.svg", "sizes": "192x192", "type": "image/svg+xml", "purpose": "any" },
+    { "src": "icons/icon-512.svg", "sizes": "512x512", "type": "image/svg+xml", "purpose": "any" }
+  ]
+}
